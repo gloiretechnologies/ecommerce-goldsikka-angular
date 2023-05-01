@@ -1,0 +1,445 @@
+<owl-carousel-o [options]="customOptions2">
+  <ng-template carouselSlide *ngFor="let data of ban" class="w-100">
+    <img src="{{data.image_uri}}" class="d-block w-100 slide-img" alt="...">
+  </ng-template>
+</owl-carousel-o>
+
+<section class="mt-4 mb-2">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="wrap-class">
+        <div class="sub-cls">
+          <img src="assets/images/1.png" alt="">
+          <p>Best Designs</p>
+        </div>
+        <div class="sub-cls">
+          <img src="assets/images/2.png" alt="">
+          <p>Quality Assured</p>
+        </div>
+        <div class="sub-cls">
+          <img src="assets/images/4.png" alt="">
+          <p>Complete Transparency</p>
+        </div>
+        <div class="sub-cls">
+          <img src="assets/images/3.png" alt="">
+          <p>BIS Hall Marked Jewellery</p>
+        </div>
+        <div class="sub-cls">
+          <img src="assets/images/5.png" alt="">
+          <p>Secured Delivery</p>
+        </div>
+        <div class="sub-cls">
+          <img src="assets/images/6.png" alt="">
+          <p>Customized Jewellery</p>
+        </div>
+        <div class="sub-cls">
+          <img src="assets/images/7.png" alt="">
+          <p>Guaranteed Buy Back</p>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center main mb-4">
+        <h4>
+          TOP PICKS <span class="fy-gold"> FOR YOU </span>
+        </h4>
+        <span class="animate-border mr-auto ml-auto mb-4"></span>
+      </div>
+      <div class="col-md-3 col-6 c-row" *ngFor="let products of top">
+        <div class="card ">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="options">
+                <p class=" heart-icon" (click)="wish(products.id,products.size)"><a class="nav-content-link"><i
+                      class="fas fa-heart home-icons"></i>
+                    <p class="mb-0"></p>
+                  </a></p>
+                <!-- <p class="share-icon" data-bs-toggle="offcanvas" data-bs-target="#offcanvasBottom"
+                  aria-controls="offcanvasBottom"><a class="nav-content-link"><i class="fas fa-share-alt"></i>
+                    <p class="mb-0"></p>
+                  </a></p> -->
+              </div>
+
+
+              <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom"
+                aria-labelledby="offcanvasBottomLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasBottomLabel">Share your product</h5>
+                  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body small">
+                  <div class="container-fluid mb-auto">
+                    <!-- <share-buttons theme="circles-dark"
+                      [include]="[ 'whatsapp','telegram','facebook', 'messenger','linkedin', 'twitter']"
+                      [showIcon]="true" [showText]="false" url="{{urls}}/{{products.id}}" description="Product
+    Shared form Goldsikka">
+                    </share-buttons> -->
+                  </div>
+                </div>
+              </div>
+
+              <img class="tp-image" src="{{products.image_uri}}" alt="">
+            </div>
+
+          </div>
+          <div class="padding-product">
+            <h5 class="pn-mbl">{{products.pname}}</h5>
+            <p class="mb-1">{{products.description}}</p>
+            <h5 class="rs-mbl">{{products.totalprice| currency:'INR'}}/-</h5>
+          </div>
+        </div>
+        <div class="row mt-1 mb-4">
+          <div class="col-md-6">
+            <button class="w-100 but-add" (click)="func(products.id,products.size)">Add to Cart <i
+                class="fas fa-shopping-cart"></i></button>
+          </div>
+          <div class="col-md-6">
+            <button routerLink="Ecommerce/details/{{products.id}}" class="but-add w-100">View More <i
+                class="fas fa-eye"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 explore-button">
+        <button routerLink="/Ecommerce/explore-deals">Explore More Designs</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="assets/images/banner1.png" class="w-100" alt="">
+    </div>
+    <div class="col-md-6">
+      <img src="assets/images/banner2.png" class="w-100" alt="">
+    </div>
+  </div>
+</div>
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center main mb-4 mt-4">
+        <h4>
+         <span style="color:black !important;" >  NEW </span> <span style="color:#edd368 ;"> ARRIVALS </span>
+        </h4>
+        <span class="animate-border mr-auto ml-auto mb-4"></span>
+
+      </div>
+      <div class="col-md-12">
+        <ul class="nav nav-pills mb-3" style="justify-content: space-evenly;" id="pills-tab" role="tablist">
+          <li class="nav-item" role="presentation" *ngFor="let data of filteredProducts">
+            <button class="nav-link btn-cat-n" id="pills-home-tab" data-bs-toggle="pill" (click)="getid(data.id)"
+              type="button" role="tab" aria-controls="pills-home" aria-selected="true">
+              <img class="image-catf" src="{{data.image_uri}}" alt="">
+              <p>{{data.catname}}</p>
+            </button>
+          </li>
+        </ul>
+        <owl-carousel-o [options]="customOptions"  >
+          <ng-template carouselSlide *ngFor="let pro of cat">
+            <div class="card w-90 owl-item  b-Amarelo" routerLink="Ecommerce/details/{{pro.id}}">
+              <img src="{{pro.image_uri}}" alt="">
+              <div class="padding-product">
+                <h5 class="scroll-head">{{pro.pname}}</h5>
+                <p class="mb-1">{{pro.totalprice| currency:'INR'}}/-</p>
+              </div>
+            </div>
+          </ng-template>
+        </owl-carousel-o>
+       
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center main mb-4 mt-4">
+        <h4>
+          SHOP <span>BY CATEGORY</span>
+        </h4>
+        <span class="animate-border mr-auto ml-auto mb-4"></span>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 cat-col">
+        <div class="d-flex flex-wrap">
+
+          <div class="cat-img text-center" *ngFor="let products of list" id="{{products .catname}}">
+            <div>
+              <a routerLink="/Ecommerce/allproducts/{{products.id}}">
+                <img class="img-c" src="{{products .image_uri}}" alt="ecommerce" width="80%" />
+                <p class="h-cat">{{products .catname}}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <img class="w-100" src="assets/images/buynow.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-4 mb-2">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12 text-center main mb-4 mt-4">
+        <h4>
+          DESIRABLE <span>ORNAMENTS</span>
+        </h4>
+        <span class="animate-border mr-auto ml-auto mb-4"></span>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-5 ">
+        <div class="image-card">
+          <img src="assets/images/section4.png" alt="" class="image-st">
+        </div>
+      </div>
+
+      <div class="col-md-7">
+        <div class="row">
+          <div class="col-md-6 ">
+            <div class="image-card">
+              <img src="assets/images/gal1.png" alt="" class="image-ste">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="image-card">
+              <img src="assets/images/gal2.png" alt="" class="image-ste">
+            </div>
+          </div>
+        </div>
+        <div class="sec-half">
+
+          <div class="row ">
+            <div class="col-md-6">
+              <div class="image-card">
+                <img src="assets/images/gal3.png" alt="" class="image-ste">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="image-card">
+                <img src="assets/images/gal4.png" alt="" class="image-ste">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center main mb-4 mt-4">
+        <h4>
+          SHOP <span>BY MATERIAL</span>
+        </h4>
+        <span class="animate-border mr-auto ml-auto mb-4"></span>
+
+      </div>
+    </div>
+
+    <div class="row ">
+      <div class="col-12">
+        <div class="d-flex flex-wrap justify-content-between">
+          <div class="col-md-2 col-6 circle-img">
+            <div class="img-sec">
+              <a routerLink="Ecommerce/type/gold">
+                <img src="assets/images/gold.webp" alt="" class="img-sty">
+                <p class="text-center txt-img">Gold</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-6 circle-img">
+            <div class="img-sec">
+              <a routerLink="Ecommerce/type/silver">
+                <img src="assets/images/silver.jpeg" alt="" class="img-sty">
+                <p class="text-center txt-img">Silver</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-6 circle-img">
+            <div class="img-sec">
+              <a routerLink="Ecommerce/allproducts/21">
+                <img src="assets/images/bullions.jpg" alt="" class="img-sty">
+                <p class="text-center txt-img">Bullion</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-6 circle-img">
+            <div class="img-sec">
+              <a routerLink="Ecommerce/type/Giftcards">
+                <img src="assets/images/gift.png" alt="" class="img-sty">
+                <p class="text-center txt-img">Gift Cards</p>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-2 col-6 circle-img">
+            <div class="img-sec">
+              <a routerLink="Ecommerce/explore-deals">
+                <img src="assets/images/all-p.jpg" alt="" class="img-sty">
+                <p class="text-center txt-img">All Products</p>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="mt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <img src="assets/images/grabnow.png" alt="" class="w-100">
+      </div>
+    </div>
+  </div>
+</section> -->
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <img src="assets/images/youimagine.png" alt="" class="w-100">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <img src="assets/images/buynow.png" alt="" class="w-100">
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="assets/images/sale.png" alt="" class="w-100">
+      </div>
+      <div class="col-md-8">
+        <h2 class="sale-head">BIG DAY SALE</h2>
+        <ul>
+          <li class="sale-text">grab the offer today to get 50% off</li>
+          <li class="sale-text">buy it and becomes the owner of the jewellery</li>
+          <li class="sale-text">buy it and becomes the owner of the jewellery today</li>
+          <li class="sale-text">buy it and becomes the owner of the jewellery today itself</li>
+          <li class="sale-text">buy it and becomes the owner of the jewellery today itself</li>
+          <li class="sale-text">buy it and becomes the owner of the jewellery today itself</li>
+
+        </ul>
+        <div class="buy-no">
+          <button class="btn btn-buy">Buy now</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section> -->
+
+
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center main mb-4 mt-4">
+        <h4>
+          OUR <span>STORES</span>
+        </h4>
+        <span class="animate-border mr-auto ml-auto mb-4"></span>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3807.359108903449!2d78.48642251479023!3d17.39454560717722!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99b681aad127%3A0xd015946f0f1d39ad!2sGoldsikka%20-%20Gold%20%26%20Silver%20Wholesalers!5e0!3m2!1sen!2sin!4v1618382097126!5m2!1sen!2sin"
+          loading="lazy" class="ifame-style" style="height:100%"></iframe>
+      </div>
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="border-cls " style="height: 150px;">
+              <i class="fa-solid fa-location-pin"></i>
+              <b>Registered Office :</b><br>
+              <p class="address-text">Goldsikka Limited #3-5-573, Himayatnagar,</p>
+              <p class="address-text">Hyderabad, Telangana-
+                500029, India.</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="border-cls space-cls" style="height: 150px;">
+              <i class="fa-solid fa-location-pin"></i>
+              <b class="address-text">Corporate Office :</b><br>
+              <p class="mb-0 address-text">Goldsikka Limited 2nd Floor, Ashoka Raghupathi Chambers, H.No. 1-10-60,
+                Hyderabad,
+                Telangana-500016, India.</p>
+
+            </div>
+          </div>
+        </div>
+        <div class="row mt-1 last-row">
+          <div class="col-md-6">
+            <div class="border-cls" style="height: 150px;">
+              <i class="fa-solid fa-location-pin"></i>
+              <b class="address-text">Jewelery Wholesale Shop :</b><br>
+              <p class="mb-0 address-text">Goldsikka Limited 1st Floor, </p>
+              <p class="address-text">#3-5-171/1/2, Narayanguda Near Melkote park, Hyderabad, Telangana-500029, India.
+              </p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="border-cls space-cls" style="height: 150px;">
+              <i class="fa-solid fa-location-pin"></i>
+              <b class="address-text">Bullion Retail Shop :</b><br>
+              <p class="mb-0 address-text">Shop No. 01 H No 21-6-60, </p>
+              <p class="address-text">Mehndi Galli, Ghansi Bazar, Charminar, Hyderabad, Telangana-500002, India.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

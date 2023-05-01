@@ -1,0 +1,139 @@
+<section class="sec">
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Order tracking Status</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <section class="bg-light shadow">
+            <div class="order-track">
+              <div class="order-track-step" *ngFor="let data of ordertracking">
+                <div class="order-track-status">
+                  <span class="order-track-status-dot" *ngIf="data.status==false"></span>
+                  <span class="order-track-status-line" *ngIf="data.status==false"></span>
+                  <span class="order-track-status-dot1" *ngIf="data.status==true"></span>
+                  <span class="order-track-status-line1" *ngIf="data.status==true"></span>
+                </div>
+                <div class="order-track-text">
+                  <p class="order-track-text-stat" *ngIf="data.status==false">{{data.message}}</p>
+                  <p class="order-track-text-stat1" *ngIf="data.status==true">{{data.message}}</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>My Orders</h2>
+      </div>
+      <div class="col-md-8">
+        <div class="row item-row" *ngFor="let data of myorders">
+          <div class="col-md-7">
+            <p class="pb mb-2 " style="text-align:inherit;">Total Order Price: <span> ₹{{data.totalprice}}</span></p>
+            <p class="pb mb-2 " style="text-align:inherit;">No of products: <span> {{data.no_of_products}}</span></p>
+            <p class="pb mb-2 " style="text-align:inherit;">Order Id: <span> {{data.order_id}}</span></p>
+
+            <!-- 
+            <owl-carousel-o [options]="customOptions">
+              <div *ngFor="let dats of info">
+                <ng-template carouselSlide *ngIf="dats.order_id===data.order_id">
+                  <div class="sli-card d-flex">
+                    <div class="col-md-5">
+                      <img class="item-img" src="{{dats.image_uri}}" alt="">
+                    </div>
+                    <div class="col-md-7">
+                      <div class="sec-col">
+                        <p class="mb-2 sec-p">Name: <span>{{dats.pname}}</span></p>
+                        <p class="mb-2 sec-p">Product Price: <span>₹{{dats.total_amount}}</span></p>
+                        <p class="mb-2 sec-p">Size: <span>{{dats.size}}</span></p>
+                      </div>
+                    </div>
+                  </div>
+                </ng-template>
+              </div>
+            </owl-carousel-o> -->
+
+          </div>
+
+          <div class="col-md-5">
+            <div>
+              <div class="order-info" data-bs-toggle="modal" data-bs-target="#exampleModal1"
+                (click)="onImage(data.order_id,data.userid)">
+                <a>Ordered Items </a>
+              </div>
+              <button class="dr-btn" (click)="downloadPdf(data.order_id)" download="w3logo">Download Receipt</button>
+              <button (click)="getordertracking(data.order_id)" type="button" class="to-btn" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">Track
+                your order</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="grey sidebar">
+          <!-- <div class="d-flex justify-content-between">
+            <h5 class="side-bh">Cart Items
+            </h5>
+            <h5 class="pr-4">
+              <p class="span-3" *ngIf="this.favo == this.favResoponse">0</p>
+              <p class="span-3" *ngIf="this.favo! == this.favResoponse"> {{lenghts}}</p>
+            </h5>
+          </div> -->
+
+          <!-- <hr> -->
+          <!-- <div class="d-flex justify-content-between">
+            <h5 class="side-bh">Wishlist Items
+            </h5>
+            <h5 class="pr-4">
+              <p class="span-3" *ngIf="lens===null">0</p>
+              <p class="span-3">{{lens}}</p>
+            </h5>
+          </div> -->
+          <!-- <hr> -->
+          <div class="d-flex justify-content-between">
+            <h5 class="side-bh">Number of Orders </h5>
+            <h5 class="pr-4">
+              <p class="span-3" *ngIf="len===null">0</p>
+              <p class="span-3">{{len}}</p>
+            </h5>
+          </div>
+
+          <!-- <hr> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Order Items</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container" *ngFor="let item of info">
+          <div class="row modal-row">
+            <div class="col-md-3">
+              <img id="myimage" class="modal-img" src="{{item.image_uri}}" alt="">
+            </div>
+            <div class="col-md-9 m-auto">
+              <p class="sub">{{item.pname}}</p>
+              <p class="name">{{item.subcatname}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

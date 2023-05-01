@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="row" *ngIf="!errorshow ">
+    <div class="col-md-8">
+      <div class=" main">
+        <div class="fst-up">
+          <h5>Checkout</h5>
+          <!-- <img src="assets/images/shop.jpg" alt="" class="shop-img"> -->
+          
+          <div *ngIf="hideCheckout" class="container d-flex align-items-center justify-content-center mt-4 pt-4 mb-4 pb-4">
+            <div class=""d-flex align-items-center justify-content-center>
+              <div>
+                    <h1 >No Products in Checkout</h1>
+                  </div>
+                </div>
+        </div>
+    
+        </div>
+        <div class="fst-down mt-4 mb-4" *ngIf="!hideCheckout" > 
+          <b *ngIf="arr.length<=1">Total ({{arr.length}} Item)</b>
+          <b *ngIf="arr.length>1">Total ({{arr.length}} Items)</b> 
+          <div class="sec-down-right" *ngFor="let data of arr">
+            <div class="row">
+              <div class="col-md-3">
+                <img src="{{data.image_uri}}" alt="" class="border-img">
+              </div>
+              <div class="col-md-9">
+                <div>
+                  <a *ngIf="data.pname!='Gift Card'" href="" class="purity-text">{{data.weight}} Grams of {{data.pname}}
+                  </a>
+                  <p style="margin-top: 1px;" class="rupees">{{data.totalprice | currency:'INR'}}</p>
+                </div>
+                <span class="pro-text" style="color: black !important;
+                font-weight: 500 !important;">Product Name :    {{data.pname}} </span>
+             
+                <br>
+                <hr class="hr-qu" *ngIf="data.va!=0">
+                <span class="pro-text" *ngIf="data.va!=0" style="color: black !important;
+                font-weight: 200 !important;">VA%  :    {{data.va}} </span>
+             
+                
+                <div *ngIf="data.pname!=='Gift Card' && data.pname!='Gift Card'"> 
+                <hr class="hr-qu" *ngIf="data.va!=0">
+                <span *ngIf="data.stoneprice!=0" style="color: black !important;
+                font-weight: 500 !important;">Stone Price : {{data.stoneprice}}</span>
+                <!-- <span *ngIf="data.stoneprice!=0"><b>Stone Price :</b></span> -->
+                <div *ngIf="data.stoneprice===0 ">                                      <!-- No Stone added in this product -->
+                <span >
+                  
+                  <!-- <hr  class="hr-qu"> -->
+                
+              </span>
+            </div>
+                <div class="gold-purity mt-3" >
+                  <span style="text-transform: capitalize;">{{data.type}} Purity</span>
+                  <span >: {{data.carat}} <span>  Carat </span></span>
+                </div>
+              </div>
+                <!-- <p class="dispatch">Dispatch by: Thursday, Sep 15, 22
+                </p> -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+          
+      </div>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="sidebar" *ngIf=" !hideCheckout">
+        <h6 class="order-text">Order Summary</h6>
+        <div class="sec-down-left">
+          <span>Cart Price:</span>
+          <span class="price-left">{{respons.cartprice | currency:'INR'}}</span>
+          <hr>
+          <span>GST Price:</span>
+          <span class="price-left">{{respons.totalgstprice | currency:'INR'}}</span>
+          <hr>
+          <div *ngIf="giftid!=null">
+            <span>Gift Card Price:</span>
+            <span class="price-left" style="color:red;">{{respons.GiftAmount | currency:'INR'}}</span>
+            <hr>
+          </div>
+
+          <b class="total">Total:</b>
+          <b class="price-left">
+            {{respons.payable_amount| currency:'INR'}}</b>
+
+          <div>
+            <!-- <countdown [config]="{ leftTime: 180 }"></countdown> -->
+            <button class="btn place-or" (click)="onSubmit()"> Place Order</button>
+          </div>
+          <!-- <p class="save-con mt-2">Save And Continue Shopping</p> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="errorshow">
+    <div class="col-md-12">
+      <div class="sty-g">
+        {{errorshow}}
+      </div>
+    </div>
+  </div>
+</div>

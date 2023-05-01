@@ -1,0 +1,134 @@
+<section>
+  <div class="container">
+    <div class="row vp-row">
+      <div class="col-md-4">
+        <div class="wrapper sidebar">
+
+          <div class="img-area">
+            <div class="inner-area">
+              <img src="assets/images/user3.jpg" alt="image" />
+            </div>
+          </div>
+          <hr class="horizon" />
+          <div class="info">
+            <p class="p-style">{{profileResponse.name}}</p>
+            <p class="p-style" style="text-transform: lowercase;">{{profileResponse.email}}</p>
+            <p class="p-style">{{profileResponse.mobile}}</p>
+          </div>
+          <div class="button">
+            <button class="btn update-profile" type="submit" routerLink="/editprofile/1">Update
+              Profile</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="cards-side">
+
+
+          <h3 class="">Addresses</h3>
+          <!-- <button class="na-btn">Add New Address</button> -->
+          <section class=" pb-4 mt-3">
+            <div class="w-100">
+              <div *ngIf="!!errorMessage" class="form-group">
+                <div class="alert alert-danger">
+                  <i class="fas fa-exclamation-triangle"></i> &nbsp; {{errorMessage}}
+                </div>
+              </div>
+              <div *ngIf="!!successMessage" class="form-group">
+                <div class="alert alert-success">
+                  <i class="fas fa-check"></i> &nbsp; {{successMessage}}
+                </div>
+              </div>
+            </div>
+
+            <div class="address">
+
+              <a routerLink="/address/add" class="y-bar btn btn-primary btn-block btn-lg mb-3"><i
+                  class="fa fa-plus mr-2"></i>
+                Add New
+                Address</a>
+
+              <div *ngIf="!!addressResponse.data">
+                <div class=" card address-list mb-2" *ngFor="let a of addressResponse.data">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <h5><i class="fas fa-map-marked-alt mr-2"></i> {{a.title}} </h5>
+                      <br>
+                      <span class="address-data">{{a.address}},</span><br />
+                      <span class="address-data">{{a.city}},{{a.state.name}},{{a.zip}}.</span>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="float-right text-right">
+                        <a class="btn btn-sm btn-outline-secondary mr-2" (click)="onMakePrimary(a.id)"
+                          *ngIf="a.is_primary == false">Set As
+                          Primary</a>
+                        <a class="btn btn-sm btn-success mr-2" *ngIf="a.is_primary == true"><i
+                            class="fa fa-check mr-1 clr-wht"></i> Primary</a>
+                        <a class="btn btn-sm btn-outline-secondary" *ngIf="a.actions == true"
+                          routerLink="/editaddress/{{a.id}}"><i class="far fa-edit"></i></a>
+                        <button type="button" (click)="deleteAddress(a.id)" *ngIf="a.actions == true"
+                          class="btn btn-outline-danger btn-sm ml-2"><i class="far fa-trash-alt"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+          <div class="bank-account-settings">
+            <h1>Bank Accounts</h1>
+            <section class="mt-3">
+              <div class="w-100">
+                <div *ngIf="!!errorMessage1" class="form-group">
+                  <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle mr-2"></i> {{errorMessage1}}
+                  </div>
+                </div>
+                <div *ngIf="!!successMessage1" class="form-group">
+                  <div class="alert alert-success">
+                    <i class="fas fa-check mr-2"></i> {{successMessage1}}
+                  </div>
+                </div>
+              </div>
+              <div class="bank">
+                <a routerLink="/bank/add" class="y-bar btn btn-primary btn-block btn-lg mb-3"> <i
+                    class="fa fa-plus mr-2"></i> Add New
+                  Bank</a>
+
+                <div *ngFor="let b of bankAccountList">
+                  <div class="bank-list">
+                    <div class="row">
+                      <div class="col-lg-6">
+                        <h5 class="title mb-4"><i class="fas fa-file-invoice mr-2"></i> {{b.name_on_account}}</h5>
+
+                        <p class="bank-data">{{b.account_number}}</p>
+                        <p class="bank-data">{{b.bank_name}},{{b.bank_branch}}</p>
+                        <p class="bank-data">{{b.ifsc_code}}</p>
+                      </div>
+                      <div class="col-lg-6">
+                        <div class="float-right text-right">
+                          <a class="btn btn-sm mr-2 btn-outline-secondary" (click)="onMakePrimary2(b.id)"
+                            *ngIf="b.is_primary == false">Set Default</a>
+                          <a class="btn btn-sm mr-2 btn-success" *ngIf="b.is_primary == true"><i
+                              class="fa fa-check mr-2"></i>
+                            Primary</a>
+                          <a class="btn btn-outline-secondary btn-sm" *ngIf="b.actions==true"
+                            routerLink="/editbank/{{b.id}}"><i class="far fa-edit"></i></a>
+                          <a (click)="deleteBank(b.id)" *ngIf="b.actions==true"
+                            class="btn btn-outline-danger btn-sm ml-2"><i class="fas fa-trash-alt"></i> </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

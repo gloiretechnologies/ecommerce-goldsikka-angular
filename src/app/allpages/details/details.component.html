@@ -1,0 +1,159 @@
+    <section class="mt-4">
+      <div class="container-fluid">
+
+        <div class="first-half">
+          <div class="col-md-1">
+          </div>
+          <div class="col-md-4 mb-4">
+
+            <div class="tab-content w-100">
+              <lib-ngx-image-zoom [thumbImage]="img" [fullImage]="img2" [magnification]="3" [enableScrollZoom]="true"
+                [enableLens]="true" [lensWidth]="200">
+              </lib-ngx-image-zoom>
+              <!-- <div class="form-group row">
+                <div class="col-md-6">
+                    <div class="img-magnifier-container">
+                        <img id="myimage" src="https://loremflickr.com/320/240/dog" width="400" height="400">
+                    </div>
+                </div>
+                <div class="img-zoom-container" *ngIf="!hideShow">
+                
+                  <div id="myresult" class="img-zoom-result"></div>
+                </div>
+               
+              </div> -->
+            </div>
+          </div>
+
+          <div class="col-md-4 ">
+            
+            <div class="sec-fu" *ngIf="hideShow">
+              <h2 class="sec-head">
+                {{producedetails[0].pname}}
+              </h2>
+              <hr class="">
+              <div class="ml-4 mt-4" *ngIf="producedetails[0].pname!==giftPrdoduct">
+                <h4>Product Details</h4>
+                <div class=" table-start">
+                  <table class="table-responsive">
+                    <tbody>
+                      <tr *ngIf="producedetails[0].pname!==giftPrdoduct">
+                        <td class="text-bold">{{producedetails[0].type}} Purity</td>
+                        <td class="table-td">:&nbsp;{{producedetails[0].carat}} Carat</td>
+                      </tr>
+                      <tr>
+                        <td class="text-bold">Brand </td>
+                        <td class="table-td">:&nbsp;{{producedetails[0].brandname}}</td>
+                      </tr>
+                      <tr *ngIf="producedetails[0].pname!==giftPrdoduct">
+                        <td class="text-bold">Weight </td>
+                        <td class="table-td">:&nbsp;
+                          <b>
+                            <span *ngIf="weightfilter!=null">{{weightfilter}}grams</span>
+                            <span *ngIf="weightfilter==null">{{producedetails[0].weight}}grams</span>
+                          </b>
+                        </td>
+                      </tr>
+                      <tr *ngIf="producedetails[0].stoneprice!=0 && producedetails[0].pname!==giftPrdoduct ">
+                        <td class="text-bold">Stone Name </td>
+                        <td class="table-td">:&nbsp;{{producedetails[0].stonename}}</td>
+                      </tr>
+                      <tr *ngIf="producedetails[0].stoneprice!=0 && producedetails[0].pname!==giftPrdoduct">
+                        <td class="text-bold">Stone Color </td>
+                        <td class="table-td" style="text-transform: capitalize;">:&nbsp;{{producedetails[0].stonecolor}}</td>
+                      </tr>
+                      <tr *ngIf="producedetails[0].stoneprice!=0 && producedetails[0].pname!==giftPrdoduct">
+                        <td class="text-bold">Stone Price </td>
+                        <td class="table-td">
+                          :&nbsp;{{producedetails[0].stoneprice |currency:'INR':'symbol':'3.0'}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="sel-head" *ngIf="producedetails[0].pname!==giftPrdoduct">
+                    <h6>Available Size/Length</h6>
+                    <div class="">
+                      <form [formGroup]="myForm1">
+                        <select class="sel-opt" name="Price" class="form-control" #teams
+                          (change)="onSelected(teams.value)">
+                          <option selected="selected" disabled value="0">Select</option>
+                          <option *ngFor="let size of producedetails[0].sizes " [value]="size.sizes">
+                            {{size.sizes}}</option>
+                        </select>
+                      </form>
+                    </div>
+                  </div>
+
+
+
+                 
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="border-for">
+              <h3>
+                <h2 *ngIf="finalprice2!=null&& producedetails[0].carat!=999">₹{{finalprice2| currency:'JPY':''}}/-</h2>
+                <h2 *ngIf="finalprice2!=null&& producedetails[0].carat==999">₹{{finalprice3| currency:'JPY':''}}/-</h2>
+
+                <h2 *ngIf="finalprice2==null ">₹
+                  {{producedetails[0].totalprice| currency:'JPY':''}}/-
+                </h2>
+              </h3>
+              <!-- <p class="border-text">This item cannot be shipped to your selected delivery location.
+                Please choose a
+                different delivery location.</p> -->
+                <p class="que-p">Contact us for any queries</p>
+              <p><i class="wtsp-icon fab fa-whatsapp-square"></i><span class="wts-span">+91 8754129634</span> </p>
+              <p class="stock-p">In Stock</p>
+
+              <div class="d-flex justify-content-around">
+                <div class="mt-4">
+                  <p class="buy-now" (click)="func1(producedetails[0].id,producedetails[0].size)">Add to
+                    Cart</p>
+                </div>
+                <div class="mt-4">
+                  <p (click)="wish(producedetails[0].id,producedetails[0].id)" class="buy-now">Add to Wishlist</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5">
+      <div class="container sp-row">
+        <h3 class="text-center mb-4">Similar Products</h3>
+        <div class="row">
+          <div class="col-md-3 col-6" *ngFor="let productssub of cat">
+            <div class="small-card">
+              <li class="nav-content-item heart-icon" style="cursor: pointer;" (click)="wish(productssub.id,productssub.size)" ><a class="nav-content-link"><i
+                    class="fas fa-heart home-icons"></i>
+                  <p class="mb-0"></p>
+                </a></li>
+              <img class="sm-img" src="{{productssub.image_uri}}" alt="">
+              <p class="sm-p">{{productssub.pname}}
+              </p>
+              <p class="text-center">{{productssub.price |currency:'INR':'symbol':'3.0'}}</p>
+            </div>
+            <div class="row mt-1 mb-4">
+              <div class="col-md-6 col-6">
+                <button (click)="func1(productssub.id,productssub.size)" class="w-100 but-add">Add to cart <i
+                    class="fas fa-shopping-cart"></i></button>
+              </div>
+              <div class="col-md-6 col-6">
+                <button routerLink="/Ecommerce/detailss/{{productssub.id}}" class="but-add w-100">View More <i
+                    class="fas fa-eye"></i></button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>

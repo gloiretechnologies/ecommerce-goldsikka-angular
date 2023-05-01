@@ -1,0 +1,41 @@
+.bank-add-settings {
+
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+  .fa-undo{
+    color: white;
+  }
+}
+.mandatory {
+  color: red;
+  font-size: 20px;
+}
+.add-sub {
+  border: none;
+  background: #ffc107;
+  color: #1a2e22;
+  font-weight: 500;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.back{
+  background: rgba(128, 128, 128, .2392156863);
+  margin-bottom: 50px !important;
+    
+}
+.btn-clr{
+  background: #1a2e22;
+}

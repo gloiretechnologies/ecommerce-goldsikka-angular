@@ -1,0 +1,46 @@
+<section class="mt-4 mb-2">
+  <div class="container">
+    <div class="row wl-row">
+      <div class="col-md-12 text-center main mb-4 mt-4">
+        <h4>
+          Wishcart
+        </h4>
+      </div>
+      <div class="col-md-3 mt-2 mb-2" *ngFor="let data of favo ">
+        <div class="card ">
+          <img src="{{data.image_uri}}" alt="">
+          <div>
+            <table class="table responsive mb-0">
+              <tr>
+                <!-- <td class="pr-text">Product Name</td> -->
+                <td class="pta-text">{{data.pname}}</td>
+              </tr>
+              <tr>
+                <!-- <td class="pr-text">Weight</td> -->
+                <td class="pt-4" *ngIf="data.pname=='Gift Card'"> </td>
+                <td *ngIf="data.pname!=='Gift Card'" class="ptb-text">{{data.sizes[0].weight}} grams</td>
+              </tr>
+              <tr>
+                <!-- <td class="pr-text">Price</td> -->
+                <td class="ptc-text">{{data.totalprice | currency:'INR'}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="row mt-1 mb-4 ac-mar">
+          <div class="col-md-6 col-6">
+            <button class="w-100 but-add  " (click)=" movetofav(data.id,data.size)">Add to Cart <i
+                class="fas fa-shopping-cart"></i></button>
+          </div>
+          <div class="col-md-6 col-6">
+            <button (click)="del(data.id)" class="but-add w-100">Delete <img class="delete-icon"
+                src="assets/images/delete-img.png" alt=""></button>
+          </div>
+        </div>
+      </div>
+      <div class="sty-g pb-4">
+        {{errorshow}}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,82 @@
+<div class="header-content-top">
+  <div class="content">
+    <span><i class="fas fa-phone-square-alt"></i><a class="num-i" href="tel:+04040137575">Phone : 040 4013
+        7575</a></span>
+    <span><i class="fas fa-envelope-square"></i><a class="mail-i" href="mailto: info@goldsikka.com">Email :
+        info@goldsikka.com</a></span>
+  </div>
+</div>
+<header>
+
+  <div class="container">
+    <a routerLink="/">
+      <img (click)="reLoadDOM()" class="logo-img" src="assets/images/logo.png" alt="">
+    </a>
+    <ng-select (change)="changeFn(selection)" type="text" class="search" [(ngModel)]="selection"
+      class="main-search custom cssClass='e-caret-hide'" placeholder="&nbsp;&nbsp;&nbsp;Search" [clearable]="true"
+      [searchable]="false">
+      <ng-option *ngFor="let data of prodname " class="op">{{data}}</ng-option>
+    </ng-select>
+
+    <nav class="nav-content wc-mbl">
+      <ul class="nav-content-list">
+
+        <li class="nav-content-item" (click)="func1()">
+          <a class="nav-content-link"><i class="fas fa-heart" style="font-size: 20px;"></i>
+            <p class="mb-0">Wishcart</p>
+            <span class="badge"><span *ngIf="response_wish==null" class="zero">0</span>{{len}}
+            </span>
+          </a>
+        </li>
+        <li class="nav-content-item" (click)="func()">
+          <a class="nav-content-link"><i class="fas fa-shopping-cart"></i>
+            <p class="mb-0">Cart</p>
+            <span class="badge1"><span *ngIf="cartlenghts=='No products in cart'" class="zero">0</span> 
+            <span
+                *ngIf="cartlenghts!='No products in cart'">{{cartlenghts.length}}</span>
+            </span>
+
+          </a>
+        </li>
+        <li class="nav-content-item account-login" *ngIf="hideShowProfile">
+          <label class="open-menu-login-account d-block" for="open-menu-login-account">
+            <a class="dropdown-toggle input-menu" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown"
+              aria-expanded="false">
+              <i class="fas fa-user-circle" style="font-size: 21px;
+                            padding-top: 3px;"></i>
+              <p class="mb-0">Profile</p>
+            </a>
+            <ul class="dropdown-menu dd-ul" aria-labelledby="dropdownMenuLink">
+              <li class="login-list-item pr-li"><a routerLink="/viewprofile">My Account</a></li>
+              <li class="login-list-item pr-li"><a routerLink="Ecommerce/mygiftcards">My Giftcard</a></li>
+              <li class="login-list-item pr-li"><a routerLink="Ecommerce/myorders">My Orders</a></li>
+              <li class="login-list-item pr-li" (click)="logout()"><a>logout</a></li>
+            </ul>
+          </label>
+        </li>
+        <li *ngIf="!hideShowProfile">
+          <p class="open-menu-login-account d-block" style="color: white; cursor: pointer; padding-top: 7px;
+          color: white;
+          margin-left: 12px;" routerLink="/login"> Sign In </p>
+        </li>
+
+        <!-- call to action -->
+      </ul>
+    </nav>
+  </div>
+  <!-- nav navigation commerce -->
+  <!-- <div class="nav-container">
+  </div> -->
+</header>
+
+
+<div class="nav-container">
+  <nav class="featured-category">
+    <ul class="nav-row">
+      <li class="nav-row-list"><a routerLink="Ecommerce/type/gold" class="nav-row-list-link">Gold</a></li>
+      <li class="nav-row-list"><a routerLink="Ecommerce/type/silver" class="nav-row-list-link">Silver</a></li>
+      <li class="nav-row-list"><a routerLink="Ecommerce/allproducts/21" class="nav-row-list-link">Bullion</a></li>
+      <li class="nav-row-list"><a routerLink="Ecommerce/type/Giftcards" class="nav-row-list-link">Gift Cards</a></li>
+    </ul>
+  </nav>
+</div>
